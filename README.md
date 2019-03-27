@@ -1,163 +1,85 @@
-# 🚂 py12306 购票助手
-分布式，多账号，多任务购票
+ **1����װPython 3.6** 
 
-## 前言
-今年回家的票明显要难买很多，早早就答应了父母今年的票没问题，到现在一张票没买到，虽然家里已经订了汽车票，让我不用操心，但是想想他们一行还有小孩，心还是很伤的。
-这段时间从 12306Bypass 到 testerSunshine 大佬写的 [12306](https://github.com/testerSunshine/12306)，还是没买到票，索性就自己写了一个，希望也能帮助到更多人
+#CentOSϵͳ
+wget https://www.moerats.com/usr/shell/Python3/CentOS_Python3.6.sh && sh CentOS_Python3.6.sh
 
-## Features
-- [x] 多日期查询余票
-- [x] 自动打码下单
-- [x] 用户状态恢复
-- [x] 电话语音通知
-- [x] 多账号、多任务、多线程支持
-- [x] 单个任务多站点查询 
-- [x] 分布式运行
-- [x] Docker 支持
-- [x] 动态修改配置文件
-- [x] 邮件通知
-- [x] Web 管理页面
-- [x] 微信消息通知
-- [ ] 代理池支持
+#Debianϵͳ
+wget https://www.moerats.com/usr/shell/Python3/Debian_Python3.6.sh && sh Debian_Python3.6.sh
 
-## 使用
-py12306 需要运行在 python 3.6 以上版本（其它版本暂未测试)
+#����Ubuntu 16+�Դ�Python3������ֻ��Ҫ��װpip3�Ϳ�����
+apt install python3-pip -y
 
-**1. 安装依赖**
-```bash
+
+ **2����װ����** 
+
 git clone https://github.com/pjialin/py12306
+cd py12306
+pip3 install -r requirements.txt
 
-pip install -r requirements.txt
-```
 
-**2. 配置程序**
-```bash
+ **3�����ó���** 
+
+#���������ļ�
 cp env.py.example env.py
-```
-自动打码
-
-目前支持免费打码，和若快打码
-
-注：免费打码无法保证持续可用，如失效请手动切换到若快平台，需要先到 [http://www.ruokuai.com](http://www.ruokuai.com/login) 注册一个账号后填写到配置中
-
-语音通知
-
-语音验证码使用的是阿里云 API 市场上的一个服务商，需要到 [https://market.aliyun.com/products/56928004/cmapi026600.html](https://market.aliyun.com/products/56928004/cmapi026600.html) 购买后将 appcode 填写到配置中
-
-**3. 启动前测试**
-
-目前提供了一些简单的测试，包括用户账号检测，乘客信息检测，车站检测等
-
-开始测试 -t 
-```bash
-python main.py -t
-```
-
-测试通知消息 (语音, 邮件) -t -n
-```bash
-# 默认不会进行通知测试，要对通知进行测试需要加上 -n 参数 
-python main.py -t -n
-```
-
-**4. 运行程序**
-```bash
-python main.py
-```
-
-### 参数列表
-
-- -t 测试配置信息
-- -t -n 测试配置信息以及通知消息
-- -c 指定自定义配置文件位置
-
-### 分布式集群
-
-集群依赖于 redis，目前支持情况
-- 单台主节点多个子节点同时运行
-- 主节点宕机后自动切换提升子节点为主节点
-- 主节点恢复后自动恢复为真实主节点
-- 配置通过主节点同步到所有子节点
-- 主节点配置修改后无需重启子节点，支持自动更新
-- 子节点消息实时同步到主节点
-
-**使用**
-
-将配置文件的中 `CLUSTER_ENABLED` 打开即开启分布式
-
-目前提供了一个单独的子节点配置文件 `env.slave.py.example` 将文件修改为 `env.slave.py`， 通过 `python main.py -c env.slave.py` 即可快速启动
 
 
-## Docker 使用
-**1. 将配置文件下载到本地**
-```bash
-docker run --rm pjialin/py12306 cat /config/env.py > env.py
-# 或
-curl https://raw.githubusercontent.com/pjialin/py12306/master/env.docker.py.example -o env.py
-```
+ **4�����Գ���** 
 
-**2. 修改好配置后运行**
-```bash
-docker run --rm --name py12306 -p 8008:8008 -d -v $(pwd):/config -v py12306:/data pjialin/py12306
-```
-当前目录会多一个 12306.log 的日志文件， `tail -f 12306.log`
+#��ʼ����
+python3 main.py -t
 
-### Docker-compose 中使用
-**1. 复制配置文件**
-```
-cp docker-compose.yml.example docker-compose.yml
-```
+#����֪ͨ��Ϣ(����, �ʼ�)
+python3 main.py -t -n
 
-**2. 从 docker-compose 运行**
 
-在`docker-compose.yml`所在的目录使用命令
-```
-docker-compose up -d
-```
+ **5����������** 
 
-## Web 管理页面
+#��������
+python3 main.py
 
-目前支持用户和任务以及实时日志查看，更多功能后续会不断加入
+#���ò����б����÷���4����
+-t ����������Ϣ
+-t -n ����������Ϣ�Լ�֪ͨ��Ϣ
+-c ָ���Զ��������ļ�λ��
 
-**使用**
+ **ps:����ǽ** 
 
-打开 Web 功能需要将配置中的 `WEB_ENABLE` 打开，启动程序后访问当前主机地址 + 端口号 (默认 8008) 即可，如 http://127.0.0.1:8008
+#CentOS 6
+iptables -I INPUT -p tcp --dport 8008 -j ACCEPT
+service iptables save
+service iptables restart
 
-## 更新
-- 19-01-10
-    - 支持分布式集群
-- 19-01-11
-    - 配置文件支持动态修改
-- 19-01-12
-    - 新增免费打码
-- 19-01-14
-    - 新增 Web 页面支持
-- 19-01-15
-    - 新增 钉钉通知
-    - 新增 Telegram 通知
-    - 新增 ServerChan 和 PushBear 微信推送
-- 19-01-18
-    - 新增 CDN 查询
+#CentOS 7
+firewall-cmd --zone=public --add-port=8008/tcp --permanent
+firewall-cmd --reload
 
-## 截图
-### Web 管理页面
-![Web 管理页面图片](https://github.com/pjialin/py12306/blob/master/data/images/web.png)
 
-### 下单成功
-![下单成功图片](https://github.com/pjialin/py12306/blob/master/data/images/order_success.png)
+ **Docker��װ** 
 
-### 关于防封
-目前查询和登录操作是分开的，查询是不依赖用户是否登录，放在 A 云 T 云容易被限制 ip，建议在其它网络环境下运行
+ **1����װDocker** 
 
-交流群 [274781597](http://shang.qq.com/wpa/qunwpa?idkey=8eab0b6402096266a62263c1cd452149926adb5cba7a2b7a98a5adc65869addf)
+#CentOS 6
+rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+yum update -y
+yum -y install docker-io
+service docker start
+chkconfig docker on
 
-### Online IDE
-[![在 Gitpod 中打开](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/pjialin/py12306)
+#CentOS 7��Debian��Ubuntu
+curl -sSL https://get.docker.com/ | sh
+systemctl start docker
+systemctl enable docker.service
 
-## Thanks
-- 感谢大佬 [testerSunshine](https://github.com/testerSunshine/12306)，借鉴了部分实现
-- 感谢所有提供 pr 的大佬 
 
-## License
+ **2�����ó���** 
 
-[Apache License.](https://github.com/pjialin/py12306/blob/master/LICENSE)
+#�½��ļ��д�������ļ�
+mkdir py12306 && cd py12306
+wget -O env.py https://raw.githubusercontent.com/pjialin/py12306/master/env.docker.py.example
+Ȼ��༭env.py�����ļ�
 
+
+ **3����������** 
+
+#������ǵ��ڲ���2������py12306�ļ������У�dataΪ������ݵ��ļ���
+docker run -d -p 8008:8008 -v $(pwd):/config -v data:/data pjialin/py12306
