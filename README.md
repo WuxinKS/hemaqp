@@ -1,48 +1,48 @@
- **1¡¢°²×°Python 3.6** 
+ **1ã€å®‰è£…Python 3.6** 
 
-#CentOSÏµÍ³
+#CentOSç³»ç»Ÿ
 wget https://www.moerats.com/usr/shell/Python3/CentOS_Python3.6.sh && sh CentOS_Python3.6.sh
 
-#DebianÏµÍ³
+#Debianç³»ç»Ÿ
 wget https://www.moerats.com/usr/shell/Python3/Debian_Python3.6.sh && sh Debian_Python3.6.sh
 
-#ÓÉÓÚUbuntu 16+×Ô´øPython3£¬ËùÒÔÖ»ĞèÒª°²×°pip3¾Í¿ÉÒÔÁË
+#ç”±äºUbuntu 16+è‡ªå¸¦Python3ï¼Œæ‰€ä»¥åªéœ€è¦å®‰è£…pip3å°±å¯ä»¥äº†
 apt install python3-pip -y
 
 
- **2¡¢°²×°ÒÀÀµ** 
+ **2ã€å®‰è£…ä¾èµ–** 
 
-git clone https://github.com/pjialin/py12306
+git clone https://github.com/WuxinKS/hemaqp
 cd py12306
 pip3 install -r requirements.txt
 
 
- **3¡¢ÅäÖÃ³ÌĞò** 
+ **3ã€é…ç½®ç¨‹åº** 
 
-#¸´ÖÆÅäÖÃÎÄ¼ş
+#å¤åˆ¶é…ç½®æ–‡ä»¶
 cp env.py.example env.py
 
 
- **4¡¢²âÊÔ³ÌĞò** 
+ **4ã€æµ‹è¯•ç¨‹åº** 
 
-#¿ªÊ¼²âÊÔ
+#å¼€å§‹æµ‹è¯•
 python3 main.py -t
 
-#²âÊÔÍ¨ÖªÏûÏ¢(ÓïÒô, ÓÊ¼ş)
+#æµ‹è¯•é€šçŸ¥æ¶ˆæ¯(è¯­éŸ³, é‚®ä»¶)
 python3 main.py -t -n
 
 
- **5¡¢Æô¶¯³ÌĞò** 
+ **5ã€å¯åŠ¨ç¨‹åº** 
 
-#Æô¶¯ÃüÁî
+#å¯åŠ¨å‘½ä»¤
 python3 main.py
 
-#¿ÉÓÃ²ÎÊıÁĞ±í£¬ÓÃ·¨¼û4²½Öè
--t ²âÊÔÅäÖÃĞÅÏ¢
--t -n ²âÊÔÅäÖÃĞÅÏ¢ÒÔ¼°Í¨ÖªÏûÏ¢
--c Ö¸¶¨×Ô¶¨ÒåÅäÖÃÎÄ¼şÎ»ÖÃ
+#å¯ç”¨å‚æ•°åˆ—è¡¨ï¼Œç”¨æ³•è§4æ­¥éª¤
+-t æµ‹è¯•é…ç½®ä¿¡æ¯
+-t -n æµ‹è¯•é…ç½®ä¿¡æ¯ä»¥åŠé€šçŸ¥æ¶ˆæ¯
+-c æŒ‡å®šè‡ªå®šä¹‰é…ç½®æ–‡ä»¶ä½ç½®
 
- **ps:·À»ğÇ½** 
+ **ps:é˜²ç«å¢™** 
 
 #CentOS 6
 iptables -I INPUT -p tcp --dport 8008 -j ACCEPT
@@ -54,9 +54,9 @@ firewall-cmd --zone=public --add-port=8008/tcp --permanent
 firewall-cmd --reload
 
 
- **Docker°²×°** 
+ **Dockerå®‰è£…** 
 
- **1¡¢°²×°Docker** 
+ **1ã€å®‰è£…Docker** 
 
 #CentOS 6
 rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
@@ -65,21 +65,21 @@ yum -y install docker-io
 service docker start
 chkconfig docker on
 
-#CentOS 7¡¢Debian¡¢Ubuntu
+#CentOS 7ã€Debianã€Ubuntu
 curl -sSL https://get.docker.com/ | sh
 systemctl start docker
 systemctl enable docker.service
 
 
- **2¡¢ÅäÖÃ³ÌĞò** 
+ **2ã€é…ç½®ç¨‹åº** 
 
-#ĞÂ½¨ÎÄ¼ş¼Ğ´æ·ÅÅäÖÃÎÄ¼ş
+#æ–°å»ºæ–‡ä»¶å¤¹å­˜æ”¾é…ç½®æ–‡ä»¶
 mkdir py12306 && cd py12306
 wget -O env.py https://raw.githubusercontent.com/pjialin/py12306/master/env.docker.py.example
-È»ºó±à¼­env.pyÅäÖÃÎÄ¼ş
+ç„¶åç¼–è¾‘env.pyé…ç½®æ–‡ä»¶
 
 
- **3¡¢Æô¶¯ÈİÆ÷** 
+ **3ã€å¯åŠ¨å®¹å™¨** 
 
-#¸ÃÃüÁî¼ÇµÃÔÚ²½Öè2½¨Á¢µÄpy12306ÎÄ¼ş¼ĞÔËĞĞ£¬dataÎª´æ·ÅÊı¾İµÄÎÄ¼ş¼Ğ
+#è¯¥å‘½ä»¤è®°å¾—åœ¨æ­¥éª¤2å»ºç«‹çš„py12306æ–‡ä»¶å¤¹è¿è¡Œï¼Œdataä¸ºå­˜æ”¾æ•°æ®çš„æ–‡ä»¶å¤¹
 docker run -d -p 8008:8008 -v $(pwd):/config -v data:/data pjialin/py12306
